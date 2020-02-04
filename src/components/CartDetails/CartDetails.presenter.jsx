@@ -1,20 +1,12 @@
-import React, { useContext } from "react";
-import { Table, Icon } from "semantic-ui-react";
-import { CartContext } from "../App";
+import React from 'react';
+import { Table, Icon } from 'semantic-ui-react';
 
-export default function CartDetails() {
-  const { cart, addToCart, removeFromCart, emptyCart } = useContext(
-    CartContext
-  );
+function CartDetails({ cart, addToCart, removeFromCart, emptyCart }) {
   return (
     <>
       <div>
-        {" "}
-        <Icon
-          name="trash alternate"
-          onClick={emptyCart}
-          style={{ cursor: "pointer" }}
-        />
+        {' '}
+        <Icon name="trash alternate" onClick={emptyCart} style={{ cursor: 'pointer' }} />
         <span>vider le caddie</span>
       </div>
 
@@ -31,19 +23,19 @@ export default function CartDetails() {
         </Table.Header>
 
         <Table.Body>
-          {Object.keys(cart).map(key => (
+          {Object.keys(cart).map((key) => (
             <Table.Row key={cart[key].id}>
               <Table.Cell>
                 <Icon
                   name="minus square outline"
                   onClick={() => removeFromCart(cart[key])}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: 'pointer' }}
                 />
-                {cart[key].quantity}{" "}
+                {cart[key].quantity}{' '}
                 <Icon
                   name="plus square outline"
                   onClick={() => addToCart(cart[key])}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: 'pointer' }}
                 />
               </Table.Cell>
               <Table.Cell singleLine>{cart[key].title}</Table.Cell>
@@ -58,3 +50,5 @@ export default function CartDetails() {
     </>
   );
 }
+
+export default CartDetails;
